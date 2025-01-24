@@ -41,7 +41,6 @@ val Typography = Typography(
         fontFamily = NunitoSans,
         fontWeight = FontWeight.Normal,
         fontSize = 14.sp,
-        color = gray
     ),
     labelSmall = TextStyle(
         fontFamily = NunitoSans,

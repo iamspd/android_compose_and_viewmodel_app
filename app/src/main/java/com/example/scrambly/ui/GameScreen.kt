@@ -2,6 +2,7 @@ package com.example.scrambly.ui
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -27,6 +28,7 @@ import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -99,8 +101,7 @@ fun GameScreen(
             ) {
                 Text(
                     text = stringResource(R.string.submit),
-                    style = MaterialTheme.typography.bodyMedium,
-                    color = cosmic
+                    style = MaterialTheme.typography.bodyMedium
                 )
             }
 
@@ -143,7 +144,10 @@ fun GameCard(
             ) {
                 Icon(
                     modifier = Modifier
-                        .clickable { },
+                        .clickable(
+                            interactionSource = remember { MutableInteractionSource() },
+                            indication = null
+                        ) { },
                     painter = painterResource(R.drawable.icon_hint),
                     contentDescription = stringResource(R.string.hint_icon_description),
                 )
