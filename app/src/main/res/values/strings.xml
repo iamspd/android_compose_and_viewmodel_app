@@ -2,10 +2,14 @@
     <string name="app_name">Scrambly</string>
     <string name="score">Score: %d</string>
     <string name="word_count">%d/10</string>
-    <string name="unscrmable_instruction">Unscramble the word using all the \nletters.</string>
+    <string name="unscramble_instruction">Unscramble the word using all the \nletters.</string>
     <string name="guess_the_word">Guess the word</string>
     <string name="submit">Submit</string>
     <string name="skip">Skip</string>
     <string name="hint_icon_description">hint</string>
     <string name="show_hint">Hint: %s</string>
+    <string name="game_over">Game Over!</string>
+    <string name="your_score">You scored: %d \nThat was fun! Press new game again if you want to restart the game.</string>
+    <string name="new_game">New Game</string>
+    <string name="exit">Exit</string>
 </resources>

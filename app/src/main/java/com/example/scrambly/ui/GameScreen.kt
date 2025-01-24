@@ -129,6 +129,13 @@ fun GameScreen(
             }
         }
     }
+
+    if (gameUiState.isGameOver) {
+        GameOverAlert(
+            score = gameUiState.score,
+            newGame = { gameViewModel.resetGame() }
+        )
+    }
 }
 
 @Composable
@@ -192,7 +199,7 @@ fun GameCard(
                 text = if (isHintRequested) {
                     stringResource(R.string.show_hint, hint)
                 } else {
-                    stringResource(R.string.unscrmable_instruction)
+                    stringResource(R.string.unscramble_instruction)
                 },
                 style = MaterialTheme.typography.bodyMedium,
                 textAlign = TextAlign.Center,
