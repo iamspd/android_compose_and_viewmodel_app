@@ -1,0 +1,50 @@
+package com.example.scrambly.data
+
+const val MAX_NO_OF_WORDS = 10
+const val SCORE_INCREASE = 20
+
+// set of words for the game
+val wordBank: Set<String> = setOf(
+    "apple",
+    "bread",
+    "chair",
+    "dance",
+    "earth",
+    "fence",
+    "grapes",
+    "house",
+    "jelly",
+    "lemon",
+    "balloon",
+    "capture",
+    "dolphin",
+    "lantern",
+    "monitor",
+    "octopus",
+    "rainbow",
+    "sandals",
+    "tractor",
+    "unicorn",
+    "adventure",
+    "brilliant",
+    "chandelier",
+    "dynamite",
+    "education",
+    "fireplace",
+    "handwriting",
+    "jellybeans",
+    "knowledge",
+    "landscape",
+    "tiger",
+    "elephant",
+    "kangaroo",
+    "penguin",
+    "pizza",
+    "pancake",
+    "popcorn",
+    "spaghetti",
+    "forest",
+    "volcano",
+    "sunset",
+    "glacier"
+)
