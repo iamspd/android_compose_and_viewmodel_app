@@ -100,7 +100,7 @@ fun GameScreen(
                 onUserGuessChange = { gameViewModel.updateUserGuess(it) },
                 isGuessWrong = gameUiState.isGuessedWordWrong,
                 isHintRequested = gameUiState.isHintRequested,
-                showHint = { gameViewModel.showHint() },
+                showHint = { gameViewModel.requestHint() },
                 hint = gameViewModel.showHintChar(),
                 onKeyboardDone = { gameViewModel.checkUserGuess() }
             )

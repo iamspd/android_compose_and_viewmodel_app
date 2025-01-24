@@ -105,7 +105,7 @@ class GameViewModel : ViewModel() {
     /**
      * update the GameUiState and set the isHintRequested flag to true
      */
-    fun showHint() {
+    fun requestHint() {
         _gameUiState.update { currentState ->
             currentState.copy(
                 isHintRequested = true
