@@ -6,20 +6,17 @@ import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.safeDrawingPadding
 import androidx.compose.foundation.layout.statusBarsPadding
-import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material.icons.Icons
 import androidx.compose.material3.Button
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
@@ -29,8 +26,9 @@ import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextFieldDefaults
-import androidx.compose.material3.rememberTopAppBarState
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -41,10 +39,12 @@ import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.scrambly.R
 import com.example.scrambly.ui.theme.ScramblyTheme
 import com.example.scrambly.ui.theme.cosmic
 import com.example.scrambly.ui.theme.sky_blue
+import com.example.scrambly.ui.viewmodel.GameViewModel
 
 @Preview(showBackground = true)
 @Composable
@@ -56,8 +56,12 @@ fun PreviewGameScreen() {
 
 @Composable
 fun GameScreen(
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    gameViewModel: GameViewModel = viewModel()
 ) {
+
+    val gameUiState by gameViewModel.gameUiState.collectAsState()
+
     Column(
         modifier = modifier
             .statusBarsPadding()
@@ -70,7 +74,7 @@ fun GameScreen(
             modifier = Modifier
                 .align(Alignment.End)
                 .padding(end = 18.dp),
-            score = 0
+            score = gameUiState.score
         )
 
         Column(
@@ -90,17 +94,22 @@ fun GameScreen(
 
             GameCard(
                 modifier = Modifier,
-                wordCount = 0,
-                currentScrambledWord = "Hello",
-                userGuess = "",
-                isGuessWrong = false
+                wordCount = gameUiState.currentWordCount,
+                currentScrambledWord = gameUiState.currentScrambledWord,
+                userGuess = gameViewModel.userGuess,
+                onUserGuessChange = { gameViewModel.updateUserGuess(it) },
+                isGuessWrong = gameUiState.isGuessedWordWrong,
+                isHintRequested = gameUiState.isHintRequested,
+                showHint = { gameViewModel.showHint() },
+                hint = gameViewModel.showHintChar(),
+                onKeyboardDone = { gameViewModel.checkUserGuess() }
             )
 
             Button(
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(top = 24.dp, bottom = 8.dp),
-                onClick = {}
+                onClick = { gameViewModel.checkUserGuess() }
             ) {
                 Text(
                     text = stringResource(R.string.submit),
@@ -111,7 +120,7 @@ fun GameScreen(
             OutlinedButton(
                 modifier = Modifier
                     .fillMaxWidth(),
-                onClick = {}
+                onClick = { gameViewModel.skipWord() }
             ) {
                 Text(
                     text = stringResource(R.string.skip),
@@ -128,7 +137,12 @@ fun GameCard(
     wordCount: Int,
     currentScrambledWord: String,
     userGuess: String,
-    isGuessWrong: Boolean
+    onUserGuessChange: (String) -> Unit,
+    isGuessWrong: Boolean,
+    isHintRequested: Boolean,
+    showHint: () -> Unit,
+    hint: String,
+    onKeyboardDone: () -> Unit
 ) {
     Card(
         modifier = modifier,
@@ -137,7 +151,7 @@ fun GameCard(
         Column(
             modifier = Modifier
                 .padding(16.dp),
-            verticalArrangement = Arrangement.spacedBy(12.dp)
+            verticalArrangement = Arrangement.spacedBy(32.dp)
         ) {
             Row(
                 modifier = Modifier
@@ -150,7 +164,7 @@ fun GameCard(
                         .clickable(
                             interactionSource = remember { MutableInteractionSource() },
                             indication = null
-                        ) { },
+                        ) { showHint() },
                     painter = painterResource(R.drawable.icon_hint),
                     contentDescription = stringResource(R.string.hint_icon_description),
                 )
@@ -175,7 +189,11 @@ fun GameCard(
             )
 
             Text(
-                text = stringResource(R.string.unscrmable_instruction),
+                text = if (isHintRequested) {
+                    stringResource(R.string.show_hint, hint)
+                } else {
+                    stringResource(R.string.unscrmable_instruction)
+                },
                 style = MaterialTheme.typography.bodyMedium,
                 textAlign = TextAlign.Center,
                 modifier = Modifier.align(Alignment.CenterHorizontally)
@@ -184,7 +202,7 @@ fun GameCard(
             OutlinedTextField(
                 value = userGuess,
                 modifier = Modifier.fillMaxWidth(),
-                onValueChange = {},
+                onValueChange = onUserGuessChange,
                 singleLine = true,
                 shape = MaterialTheme.shapes.medium,
                 label = {
@@ -203,7 +221,7 @@ fun GameCard(
                     imeAction = ImeAction.Done
                 ),
                 keyboardActions = KeyboardActions(
-                    onDone = {}
+                    onDone = { onKeyboardDone() }
                 )
             )
         }
