@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">Scrambly</string>
+    <string name="score">Score: %d</string>
+    <string name="word_count">%d/10</string>
+    <string name="unscrmable_instruction">Unscramble the word using all the \nletters.</string>
+    <string name="guess_the_word">Guess the word</string>
+    <string name="submit">Submit</string>
+    <string name="skip">Skip</string>
+    <string name="hint_icon_description">hint</string>
 </resources>
