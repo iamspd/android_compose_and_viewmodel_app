@@ -7,6 +7,7 @@ love word games!
 
 Screenshots
 -----------
+<img src="[drawing.jpg](https://github.com/user-attachments/assets/3c8c3de5-d203-40a1-8db0-bff42b610e8a)" alt="main screen" style="width:400px; height:400px"/>
 
 ![main screen](https://github.com/user-attachments/assets/3c8c3de5-d203-40a1-8db0-bff42b610e8a)
 ![main screen with hint](https://github.com/user-attachments/assets/dae17dcc-8680-410f-82e2-3030792ef161)
