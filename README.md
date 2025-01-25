@@ -5,6 +5,10 @@ Scrambly is a simple and fun word scramble game for Android that challenges play
 their vocabulary. Built with Kotlin and designed for ease of use, Scrambly is perfect for players of all ages who 
 love word games!
 
+Screenshots
+-----------
+
+
 Gameplay Overview
 -----------------
 
@@ -57,11 +61,8 @@ How to Play
 
 * View your final score and choose to play again or exit the app.
 
-Screenshots
------------
-
-
 License
+-------
 
 This project is licensed under the MIT License. See the LICENSE file for details.
 
