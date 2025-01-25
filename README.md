@@ -7,7 +7,11 @@ love word games!
 
 Screenshots
 -----------
+<img src="https://github.com/user-attachments/assets/3c8c3de5-d203-40a1-8db0-bff42b610e8a" alt="main screen" style="width:25%; height:auto;">
 
+<img src="https://github.com/user-attachments/assets/dae17dcc-8680-410f-82e2-3030792ef161" alt="main screen with hint" style="width:25%; height:auto;">
+
+<img src="https://github.com/user-attachments/assets/71d85ef2-ef85-4bf5-bb3f-a5d83b8c8306" alt="main screen" style="width:25%; height:auto;">
 
 Gameplay Overview
 -----------------
