@@ -68,8 +68,8 @@ class GameViewModel : ViewModel() {
                     isGuessedWordWrong = true
                 )
             }
-            updateUserGuess("")
         }
+        updateUserGuess("")
     }
 
     private fun updateGameState(score: Int) {

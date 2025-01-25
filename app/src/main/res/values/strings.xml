@@ -7,7 +7,7 @@
     <string name="submit">Submit</string>
     <string name="skip">Skip</string>
     <string name="hint_icon_description">hint</string>
-    <string name="show_hint">Hint: %s</string>
+    <string name="show_hint">The word starts with: %s</string>
     <string name="game_over">Game Over!</string>
     <string name="your_score">You scored: %d \nThat was fun! Press new game again if you want to restart the game.</string>
     <string name="new_game">New Game</string>
